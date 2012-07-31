@@ -1,0 +1,41 @@
+" Delete buffers when they become hidden.
+" From https://github.com/scrooloose/nerdtree/issues/47#issuecomment-748583
+autocmd BufRead * call s:set_hidden()
+function s:set_hidden()
+    if empty(&buftype) "most explorer plugins have buftype=nofile
+        setlocal bufhidden=delete
+    endif
+endfunction
+
+"Source .bash_profile when running shell command.
+" set shell=bash\ --login
+"Svn blame selected lines.
+vmap gl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" show tabs and trailing (middle dot)
+set listchars=tab:>-,trail:·
+
+" Insert rpdb2 breakpoint
+au BufNewFile,BufReadPost *.py nnoremap <Leader>rpdb :exec "normal oimport rpdb2; rpdb2.start_embedded_debugger('asdf')\e"<return>
+
+" Color scheme stuff
+set background=dark
+let g:solarized_termtrans=1
+colorscheme solarized
+
+" Shortcuts for commonly-typed strings
+inoremap <C-j> json_dict['
+
+" Search within visual selection (on Mac keyboard, this is <C-/>)
+vnoremap  <Esc>/\%V
+
+" Map shortcuts for next and previous tabs, for consistency with pentadactyl
+" Note: CtrlP plugin remapped to <c-j>
+nnoremap <C-P> :tabprevious<CR>
+nnoremap <C-N> :tabnext<CR>
+
+" Shortcut for flipped vsplit
+command -nargs=1 -complete=file Vspr vert belowright split <args>
+
+" Set shortcut for finding function calls
+nnoremap <Leader>w /\w\+(<return>
