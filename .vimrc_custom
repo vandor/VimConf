@@ -15,6 +15,9 @@ vmap gl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR
 " show tabs and trailing (middle dot)
 set listchars=tab:>-,trail:·
 
+" Insert pudb breakpoint
+au BufNewFile,BufReadPost *.py nnoremap <Leader>u :exec "normal ofrom pudb import set_trace; set_trace()\e"<return>
+
 " Insert rpdb2 breakpoint
 au BufNewFile,BufReadPost *.py nnoremap <Leader>rpdb :exec "normal oimport rpdb2; rpdb2.start_embedded_debugger('asdf')\e"<return>
 
