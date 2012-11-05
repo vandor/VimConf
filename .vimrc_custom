@@ -42,3 +42,9 @@ command -nargs=1 -complete=file Vspr vert belowright split <args>
 
 " Set shortcut for finding function calls
 nnoremap <Leader>w /\w\+(<return>
+
+" Make the default behavior to open the file in a new tab.
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
