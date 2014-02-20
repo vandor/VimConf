@@ -72,8 +72,8 @@
     set lazyredraw " do not redraw while running macros
     set linespace=0 " don't insert any extra pixel lines
                      " betweens rows
-    set list " we do what to show tabs, to ensure we get them
-              " out of my files
+    au FileType python set list " we do what to show tabs, to ensure we get them
+                                " out of my files
     set listchars=tab:>-,trail:- " show tabs and trailing
     set matchtime=5 " how many tenths of a second to blink
                      " matching brackets for
@@ -103,7 +103,7 @@
 " }
 
 " Text Formatting/Layout {
-    set expandtab " no real tabs please!
+    au FileType python set expandtab " no real tabs please!
     set formatoptions=rq " Automatically insert comment leader on return,
                           " and let gq format comments
     set ignorecase " case insensitive by default
@@ -113,7 +113,7 @@
     set smartcase " if there are caps, go case-sensitive
     set shiftwidth=4 " auto-indent amount when using cindent,
                       " >>, << and stuff like that
-    set softtabstop=4 " when hitting tab or backspace, how many spaces
+    au FileType python set softtabstop=4 " when hitting tab or backspace, how many spaces
                        "should a tab be (see expandtab)
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 softtabstop=2 " For CoffeeScript
     set tabstop=8 " real tabs should be 8, and they will show with

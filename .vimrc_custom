@@ -1,3 +1,6 @@
+" Save pinkies
+nnoremap ; :
+
 " Delete buffers when they become hidden.
 " From https://github.com/scrooloose/nerdtree/issues/47#issuecomment-748583
 autocmd BufRead * call s:set_hidden()
@@ -26,14 +29,18 @@ set background=dark
 let g:solarized_termtrans=1
 colorscheme solarized
 
-" Shortcuts for commonly-typed strings
-inoremap <C-j> json_dict['
-
 " Search within visual selection (on Mac keyboard, this is <C-/>)
 vnoremap  <Esc>/\%V
 
+" Make the default behavior to open the file in a new tab.
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
 " Map shortcuts for next and previous tabs, for consistency with pentadactyl
-" Note: CtrlP plugin remapped to <c-j>
+" Note: Remap CtrlP plugin to <c-j>
+let g:ctrlp_map = '<C-J>'
 nnoremap <C-P> :tabprevious<CR>
 nnoremap <C-N> :tabnext<CR>
 
@@ -43,8 +50,7 @@ command -nargs=1 -complete=file Vspr vert belowright split <args>
 " Set shortcut for finding function calls
 nnoremap <Leader>w /\w\+(<return>
 
-" Make the default behavior to open the file in a new tab.
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+" Turn off syntax highlighting in diff mode
+if &diff
+    syntax off
+endif
